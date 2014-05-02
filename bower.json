@@ -1,0 +1,34 @@
+{
+  "name": "requirejs-ehbs",
+  "homepage": "https://github.com/iongion/requirejs-ehbs",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master"
+  },
+  "_source": "git://github.com/iongion/requirejs-ehbs.git",
+  "_target": "*",
+  "_originalSource": "requirejs-hbs",
+  "version": "0.0.2",
+  "authors": [
+    "ionut stoica <stoica.ionut@gmail.com>"
+  ],
+  "description": "RequireJS ember handlebars template loading plugin",
+  "main": "ehbs.js",
+  "moduleType": [
+    "amd"
+  ],
+  "keywords": [
+    "Ember",
+    "Handlebars",
+    "RequireJS",
+    "Template"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

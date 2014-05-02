@@ -1,7 +1,7 @@
 define(["handlebars"], function(Handlebars) {
   Handlebars = Handlebars || this.Handlebars;
   var buildMap = {},
-      templateExtension = ".hbs";
+      templateExtension = ".ehbs";
 
   return {
 
@@ -9,7 +9,7 @@ define(["handlebars"], function(Handlebars) {
     load: function (name, parentRequire, onload, config) {
 
       // Get the template extension.
-      var ext = (config.hbs && config.hbs.templateExtension ? config.hbs.templateExtension : templateExtension);
+      var ext = (config.ehbs && config.ehbs.templateExtension ? config.ehbs.templateExtension : templateExtension);
 
       if (config.isBuild) {
         // Use node.js file system module to load the template.
@@ -23,7 +23,7 @@ define(["handlebars"], function(Handlebars) {
         // don't have to deal with ajax stuff
         parentRequire(["text!" + name + ext], function(raw) {
           // Just return the compiled template
-          onload(Handlebars.compile(raw));
+          onload(Ember.Handlebars.compile(raw));
         });
       }
 
@@ -31,13 +31,12 @@ define(["handlebars"], function(Handlebars) {
 
     // http://requirejs.org/docs/plugins.html#apiwrite
     write: function (pluginName, name, write) {
-      var compiled = Handlebars.precompile(buildMap[name]);
+      var compiled = Ember.Handlebars.precompile(buildMap[name]);
       // Write out precompiled version of the template function as AMD
       // definition.
       write(
-        "define('hbs!" + name + "', ['handlebars'], function(Handlebars){ \n" +
-          "Handlebars = Handlebars || this.Handlebars;\n" +
-          "return Handlebars.template(" + compiled.toString() + ");\n" +
+        "define('ehbs!" + name + "', ['ember'], function(Ember){ \n" +
+          "return Ember.Handlebars.template(" + compiled.toString() + ");\n" +
         "});\n"
       );
     }
